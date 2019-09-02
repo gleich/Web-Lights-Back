@@ -1,0 +1,27 @@
+sudo: required
+dist: xenial
+before_install:
+  - export TZ=america/new-york
+  - openssl aes-256-cbc -K $encrypted_2f5e3e66b395_key -iv $encrypted_2f5e3e66b395_iv
+    -in firestore_creds.json.enc -out ./src/firestore_creds.json -d
+jobs:
+  include:
+    - stage: Python3.6
+      language: python
+      python: 3.6
+      install: pip install -r requirements.txt
+      script:
+        - cd src/tests
+        - python test-database.py
+        - python test-utils-generic.py
+    - stage: Python3.7
+      language: python
+      python: 3.7
+      install: pip install -r requirements.txt
+      script:
+        - cd src/tests
+        - python test-database.py
+        - python test-utils-generic.py
+stages:
+  - Python3.7
+  - Python3.6
