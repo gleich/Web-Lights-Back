@@ -21,9 +21,9 @@ def main():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     pins = {
-        "green": 0,
-        "red": 1,
-        "yellow": 2
+        "green": 22,
+        "red": 17,
+        "yellow": 27
     }
     request_numbers = 0
     while true:
