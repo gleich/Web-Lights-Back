@@ -2,6 +2,8 @@ sudo: required
 dist: xenial
 before_install:
 - export TZ=america/new-york
+- openssl aes-256-cbc -K $encrypted_b3deb2ccf9ae_key -iv $encrypted_b3deb2ccf9ae_iv
+  -in firebase_SDK.json.enc -o ut ./src/firebase_SDK.json -d
 jobs:
   include:
   - stage: Python3.6
@@ -23,6 +25,3 @@ jobs:
 stages:
 - Python3.7
 - Python3.6
-dd:
-- openssl aes-256-cbc -K $encrypted_b3deb2ccf9ae_key -iv $encrypted_b3deb2ccf9ae_iv
-  -in firebase_SDK.json.enc -out ./src/firebase_SDK.json -d
